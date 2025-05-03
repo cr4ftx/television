@@ -1,3 +1,5 @@
+#:schema ./schema.json
+
 # CONFIGURATION FILE LOCATION ON YOUR SYSTEM:
 # -------------------------------------------
 # Defaults:
@@ -130,10 +132,10 @@ fallback_channel = "files"
 # "dirs" = ["ls"]
 # "files" = ["cat", "cp"]
 # ```
-"alias" = ["alias", "unalias"]
-"env" = ["export", "unset"]
-"dirs" = ["cd", "ls", "rmdir"]
-"files" = [
+alias = ["alias", "unalias"]
+env = ["export", "unset"]
+dirs = ["cd", "ls", "rmdir"]
+files = [
   "cat",
   "less",
   "head",
@@ -155,8 +157,8 @@ fallback_channel = "files"
   "gunzip",
   "xz",
 ]
-"git-diff" = ["git add", "git restore"]
-"git-branch" = [
+git-diff = ["git add", "git restore"]
+git-branch = [
   "git checkout",
   "git branch",
   "git merge",
@@ -164,8 +166,8 @@ fallback_channel = "files"
   "git pull",
   "git push",
 ]
-"docker-images" = ["docker run"]
-"git-repos" = ["nvim", "code", "hx", "git clone"]
+docker-images = ["docker run"]
+git-repos = ["nvim", "code", "hx", "git clone"]
 
 
 [shell_integration.keybindings]

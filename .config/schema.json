@@ -1,0 +1,251 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://example.com/product.schema.json",
+	"title": "Television config",
+	"description": "Configuration file for Television",
+	"type": "object",
+	"properties": {
+		"frame_rate": {
+			"description": "The frame rate",
+			"type": "integer",
+			"default": 60,
+			"deprecated": true
+		},
+		"tick_rate": {
+			"description": "The tick rate",
+			"type": "integer",
+			"default": 50
+		},
+		"default_channel": {
+			"description": "Default channel used by Television",
+			"type": "string",
+			"default": "files"
+		},
+		"ui": {
+			"description": "UI related config",
+			"type": "object",
+			"properties": {
+				"use_nerd_font_icons": {
+					"description": "Whether to use nerd font icons in the UI\nThis option requires a font patched with Nerd Font in order to properly\ndisplay glyphs (see https://www.nerdfonts.com/ for more information)",
+					"type": "boolean",
+					"default": false
+				},
+				"ui_scale": {
+					"description": "How much space to allocate for the UI (in percentage of the screen)",
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 100,
+					"default": 100
+				},
+				"show_help_bar": {
+					"description": "Whether to show the top help bar in the UI by default\nThis option can be toggled with the (default) `ctrl-g` keybinding",
+					"type": "boolean",
+					"default": false
+				},
+				"show_preview_panel": {
+					"description": "Whether to show the preview panel in the UI by default\nThis option can be toggled with the (default) `ctrl-o` keybinding",
+					"type": "boolean",
+					"default": true
+				},
+				"input_bar_position": {
+					"description": "Whether to show the preview panel in the UI by default\nThis option can be toggled with the (default) `ctrl-o` keybinding",
+					"enum": ["bottom", "top"],
+					"default": "top"
+				},
+				"preview_title_position": {
+					"description": "Where to place the preview title in the UI (top or bottom)",
+					"enum": ["bottom", "top"],
+					"deprecated": true,
+					"default": "top"
+				},
+				"theme": {
+					"description": "Television theme",
+					"type": "string",
+					"default": "default"
+				}
+			}
+		},
+		"keybindings": {
+			"description": "Keybindings related config",
+			"type": "object",
+			"properties": {
+				"quit": {
+					"description": "Quit the application",
+					"type": "array",
+					"default": ["esc", "ctrl-c"]
+				},
+				"select_next_entry": {
+					"description": "Scrolling next entry",
+					"type": "array",
+					"default": ["down", "ctrl-n", "ctrl-j"]
+				},
+				"select_prev_entry": {
+					"description": "Scrolling next entry",
+					"type": "array",
+					"default": ["up", "ctrl-p", "ctrl-k"]
+				},
+				"select_next_page": {
+					"description": "Scrolling next page",
+					"type": "string",
+					"default": "pagedown"
+				},
+				"select_prev_page": {
+					"description": "Scrolling prev page",
+					"type": "string",
+					"default": "pageup"
+				},
+				"scroll_preview_half_page_down": {
+					"description": "Scrolling the preview page down",
+					"type": "string",
+					"default": "ctrl-d"
+				},
+				"scroll_preview_half_page_up": {
+					"description": "Scrolling the preview page up",
+					"type": "string",
+					"default": "ctrl-u"
+				},
+				"toggle_selection_down": {
+					"description": "Add entry to selection and move to the next entry",
+					"type": "string",
+					"default": "tab"
+				},
+				"toggle_selection_up": {
+					"description": "Add entry to selection and move to the previous entry",
+					"type": "string",
+					"default": "backtab"
+				},
+				"confirm_selection": {
+					"description": "Confirm selection",
+					"type": "string",
+					"default": "enter"
+				},
+				"copy_entry_to_clipboard": {
+					"description": "Copy the selected entry to the clipboard",
+					"type": "string",
+					"default": "ctrl-y"
+				},
+				"toggle_remote_control": {
+					"description": "Toogle the remote control mode",
+					"type": "string",
+					"default": "ctrl-r"
+				},
+				"toggle_send_to_channel": {
+					"description": "Toogle the send to channel mode",
+					"type": "string",
+					"default": "ctrl-s"
+				},
+				"toggle_help": {
+					"description": "Toogle the help bar mode",
+					"type": "string",
+					"default": "ctrl-g"
+				},
+				"toggle_preview": {
+					"description": "Toogle the preview panel",
+					"type": "string",
+					"default": "ctrl-o"
+				}
+			}
+		},
+		"shell_integration": {
+			"description": "The shell integration feature allows you to use television as a picker for\nyour shell commands (as well as your shell history with <CTRL-R>).\nE.g. typing `git checkout <CTRL-T>` will open television with a list of\nbranches to choose from.",
+			"type": "object",
+			"properties": {
+				"fallback_channel": {
+					"description": "This specifies the default fallback channel if no other channel is matched.",
+					"type": "string",
+					"default": "files"
+				},
+				"channel_triggers": {
+					"description": "This specifies the default fallback channel if no other channel is matched.",
+					"type": "object",
+					"properties": {
+						"alias": {
+							"description": "Alias channel triggers",
+							"type": "array",
+							"default": ["alias", "unalias"]
+						},
+						"env": {
+							"description": "Env channel triggers",
+							"type": "array",
+							"default": ["export", "unset"]
+						},
+						"dirs": {
+							"description": "Dirs channel triggers",
+							"type": "array",
+							"default": ["cd", "ls", "rmdir"]
+						},
+						"files": {
+							"description": "Files channel triggers",
+							"type": "array",
+							"default": [
+								"cat",
+								"less",
+								"head",
+								"tail",
+								"vim",
+								"nano",
+								"bat",
+								"cp",
+								"mv",
+								"rm",
+								"touch",
+								"chmod",
+								"chown",
+								"ln",
+								"tar",
+								"zip",
+								"unzip",
+								"gzip",
+								"gunzip",
+								"xz"
+							]
+						},
+						"git-diff": {
+							"description": "git-diff channel triggers",
+							"type": "array",
+							"default": ["git add", "git restore"]
+						},
+						"git-branch": {
+							"description": "git-branch channel triggers",
+							"type": "array",
+							"default": [
+								"git checkout",
+								"git branch",
+								"git merge",
+								"git rebase",
+								"git pull",
+								"git push"
+							]
+						},
+						"docker-images": {
+							"description": "docker-images channel triggers",
+							"type": "array",
+							"default": ["docker run"]
+						},
+						"git-repos": {
+							"description": "git-repos channel triggers",
+							"type": "array",
+							"default": ["nvim", "code", "hx", "git clone"]
+						}
+					}
+				},
+				"keybindings": {
+					"description": "Controls which key binding should trigger tv",
+					"type": "object",
+					"properties": {
+						"smart_autocomplete": {
+							"description": "For shell autocomplete",
+							"type": "string",
+							"default": "ctrl-t"
+						},
+						"command_history": {
+							"description": "For command history",
+							"type": "string",
+							"default": "ctrl-r"
+						}
+					}
+				}
+			}
+		}
+	}
+}
