@@ -12,6 +12,14 @@ alias r := run
 	RUST_LOG=debug cargo run
 	echo "Done"
 
+alias w := watch
+
+# Run the program in debug mode with logs enabled
+@watch:
+	echo "Running {{ NAME }}..."
+	RUST_LOG=debug watchexec --wrap-process=none --clear=reset --restart cargo run
+	echo "Done"
+
 # Setup the project environment for local development
 @setup:
 	echo "Setting up {{ NAME }}..."
